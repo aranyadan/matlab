@@ -1,4 +1,4 @@
-function [ eps_t ] = blockageCorrFactor( airfoil, AoA, height )
+function [ eps_t bH ] = blockageCorrFactor( airfoil, AoA, height )
 % Returns the blockage correction factor for a given geometry and angle of
 % attack.
 
@@ -12,11 +12,11 @@ if ~exist('height','var')
 end
 
 % Re-scale data
-xc = xc*chord;
-yc = yc*chord;
+xc = xc*chord;		
+yc = yc*chord;		
 
 % Separate data into upper and lower surfaces
-I	= find( xc == max(xc), 1, 'first' );
+I	= find( abs(diff(sign(yc)))==2, 1, 'first' );
 xcu	= xc(1:I);
 xcl	= fliplr(xc(I+1:end));
 ycu	= yc(1:I);

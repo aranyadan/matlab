@@ -18,7 +18,7 @@ for n = 1:nSamp
   	Cp(n,:) = ( P(n,:) + Pinf(n) )/Q(n);
 end
 
-% Find last pressure tab
+% Find last pressure tap
 I	= find( xc==max(xc), 1, 'first' );
 
 % Re-order data for easy integration
@@ -31,7 +31,7 @@ if close
 	Cp(:,end+1)	= Cp(:,1);
 	xc(end+1)	= -xc(1);
 	yc(end+1)	= yc(1);
-    H(end+1)	= H(1);
+	H(end+1)	= H(1);
 end
 
 % Calculate panel lengths
@@ -48,4 +48,8 @@ Cm	= -trapz( s, ( Cp .* repmat(yc,nSamp,1) .* repmat(cos(H),nSamp,1) ), 2 ) ...
 		+ trapz( s, ( Cp .* repmat(0.25-abs(xc),nSamp,1) .* repmat(sin(H),nSamp,1) ), 2 );
 
 % Re-order Cp back to standard
-Cp	= [ fliplr(Cp(:,1:I))	fliplr(Cp(:,(I+1):end)) ];
+if close
+	Cp	= [ fliplr(Cp(:,1:I)) fliplr(Cp(:,(I+1):end-1)) Cp(:,I) ];
+else
+	Cp	= [ fliplr(Cp(:,1:I)) fliplr(Cp(:,(I+1):end)) ];
+end

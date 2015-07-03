@@ -63,11 +63,12 @@ for n=1:length(uff)
 	c = colorbar; caxis([0 2]);
 	
 	% Label everything
-	set(get(c,'ylabel'),'string','L [Hz]');
+	set(get(c,'ylabel'),'string','Swirling Strength');
 	xlabel( a.X.describe ); ylabel( a.Y.describe );
 	title([ 'f_F = ' num2str(uff(n)) ' Hz' ]);
 
 	drawNACA( '0015', 15 );
+	%drawVR7( 17 );
 	
 	set(fh,'color','w');
 	set(fh,'renderer','zbuffer');
@@ -102,11 +103,12 @@ for n=1:length(uff)
 		c = colorbar; caxis([0 2]);
 		
 		% Label everything
-		set(get(c,'ylabel'),'string','L [Hz]');
+		set(get(c,'ylabel'),'string','Swirling Strength');
 		xlabel( a.X.describe ); ylabel( a.Y.describe );
 		title([ 'f_F = ' num2str(uff(n)) ' Hz' ]);
 		
 		drawNACA( '0015', 15 );
+		%drawVR7( 17 )
 		
 		annoPhase( pa(fset(k)) );
 		
@@ -116,6 +118,6 @@ for n=1:length(uff)
 	end
 	
 	fout = fullfile( d, [ num2str(uff(n)) 'hz.gif' ] );
-	imwrite(im,map,fout,'DelayTime',0.5,'LoopCount',Inf);
+% 	imwrite(im,map,fout,'DelayTime',0.5,'LoopCount',Inf);
 	
 end

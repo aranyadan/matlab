@@ -1,4 +1,4 @@
-function drawNACA( series, varargin )
+function h = drawNACA( series, varargin )
 %DRAWNACA Draw a NACA series airfoil in the currently active figure. The
 %input must be in the form of a string, i.e. drawNACA('0015').
 %	drawNACA( '####', a, b ) - chord line from point a to point b
@@ -66,7 +66,7 @@ z = 0.1*ones(size(x));
 
 % Draw the airfoil
 hold on;
-fill3( x, y, z, 'k' );
+h = fill3( x, y, z, 'k' );
 hold off;
 
 

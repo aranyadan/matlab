@@ -1,7 +1,7 @@
 function [ h ] = plotPIV( varargin )
 %PLOTPIV plots a colormap of the listed quantities for each selected MAT
 %file.
-%	Valid quantities: 'u','v','uv','vort','ss','tke'
+%	Valid quantities: 'u','v','urms','vrms','n','uv','vort','ss','tke'
 
 
 % Which quantities should be plotted?
@@ -46,13 +46,7 @@ for n=1:nFiles
 			case {'v','vm'}
 				pcolor( X.value, Y.value, Vm.value );
 				title( Vm.describe );
-				
-			case {'uv','total'}
-				uv = sqrt( Um.value.^2 + Vm.value.^2 );
-				pcolor( X.value, Y.value, uv );
-				title([ 'Total Velocity, (u^2+v^2)' norm ]);
-				clear uv;
-				
+							
 			case {'urms'}
 				pcolor( X.value, Y.value, Urms.value );
 				title( Urms.describe );
@@ -60,6 +54,16 @@ for n=1:nFiles
 			case {'vrms'}
 				pcolor( X.value, Y.value, Vrms.value );
 				title( Vrms.describe );
+				
+			case {'n'}
+				pcolor( X.value, Y.value, N.value );
+				title( N.describe );
+				
+			case {'uv','total'}
+				uv = sqrt( Um.value.^2 + Vm.value.^2 );
+				pcolor( X.value, Y.value, uv );
+				title([ 'Total Velocity, (u^2+v^2)' norm ]);
+				clear uv;
 				
 			case {'vort'}
 				vort = curl( X.value, Y.value, Um.value, Vm.value );
