@@ -200,10 +200,10 @@ parfor k = 1:K
 	L2(k) = ls(2);  %\lambda_2-criterion
 end
 
+D = reshape(D,S);
+Q = reshape(Q,S);
 L = reshape(L,S);
-Q = reshape(L,S);
-D = reshape(L,S);
-L2 = reshape(L,S);
+L2 = reshape(L2,S);
 
 %% OUTPUT Formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if sum(dli==dlo)~=3 %Reorders the matrices to conform to input format

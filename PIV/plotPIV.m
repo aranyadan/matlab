@@ -31,6 +31,7 @@ for n=1:nFiles
 	
 	% One figure per file
 	h(n) = figure;
+	colormap(jet);
 	
 	% Loop through each quantity
 	for m=1:nPlots
