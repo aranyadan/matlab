@@ -88,6 +88,7 @@ for n=1:nFiles
 		shading interp;
 		colorbar;
 		ylabel( Y.describe );
+		set(gca,'layer','top');		% Force tick marks on top
 		
 	end
 	
