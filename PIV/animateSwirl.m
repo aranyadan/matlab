@@ -42,24 +42,11 @@ for n=1:length(uff)
 	% FIRST FRAME
 	a = load( fullfile( d, fs{fset(1)} ) );
 	
-	% 
-	[x y]=meshgrid(a.X.value,a.Y.value);
-	u = a.Um.value;		v = a.Vm.value;
-	
-	% Apply a simple smoothing filter
-	u = filter2( ones(3)/9, u );
-	v = filter2( ones(3)/9, v );
-	
-	% Condition the matrices
-	u( isnan(u) | isinf(u) ) = 0;
-	v( isnan(v) | isinf(v) ) = 0;
-	
-	% Calculate the swirling strength
-	[~,L1] = VortexID(x,y,u,v);
+	L = swirl( a.X.value, a.Y.value, a.Um.value, a.Vm.value, 3 );
 	
 	% Plot the swirling strength
 	fh = figure; ah = axes;
-	pcolor( x, y, L1 ); shading interp; axis image;
+	pcolor( x, y, L ); shading interp; axis image;
 	c = colorbar; caxis([0 2]);
 	
 	% Label everything
@@ -83,23 +70,11 @@ for n=1:length(uff)
 		
 		a = load( fullfile( d, fs{fset(k)} ) );
 		
-		% 
-		u = a.Um.value;		v = a.Vm.value;
-		
-		% Apply a simple smoothing filter
-		u = filter2( ones(3)/9, u );
-		v = filter2( ones(3)/9, v );
-		
-		% Condition the matrices
-		u( isnan(u) | isinf(u) ) = 0;
-		v( isnan(v) | isinf(v) ) = 0;
-		
-		% Calculate the swirling strength
-		[~,L1] = VortexID(x,y,u,v);
+		L = swirl( a.X.value, a.Y.value, a.Um.value, a.Vm.value, 3 );
 		
 		% Plot the swirling strength
 		clf(fh); ah = axes;
-		pcolor( x, y, L1 ); shading interp; axis image;
+		pcolor( x, y, L ); shading interp; axis image;
 		c = colorbar; caxis([0 2]);
 		
 		% Label everything

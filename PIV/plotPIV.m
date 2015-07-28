@@ -73,7 +73,9 @@ for n=1:nFiles
 				clear vort;
 				
 			case {'ss','swirl'}
-				% For another time
+				L = swirl( X.value, Y.value, Um.value, Vm.value, 3 );
+				pcolor( X.value, Y.value, L );
+				title( 'Swirling Strength' );
 				
 			case {'tke'}
 				tke = 0.5*( Urms.value.^2 + Vrms.value.^2 );
